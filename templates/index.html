@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <!-- Upload form -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="fileInput" name="file">
+            <label class="custom-file-label" for="fileInput">Choose file</label>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Upload</button>
+    </form>
+
+    <!-- Preview image -->
+    <div id="preview" class="mt-3"></div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Custom JavaScript -->
+<script>
+    // Function to display preview image
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var img = document.createElement('img');
+            img.src = event.target.result;
+            img.style.maxWidth = '100%';
+            document.getElementById('preview').innerHTML = '';
+            document.getElementById('preview').appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    });
+</script>
+
+</body>
+</html>
